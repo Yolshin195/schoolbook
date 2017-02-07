@@ -56,7 +56,10 @@ ROOT_URLCONF = 'schoolbook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/home/alexei/schoolbook/schoolbook/templates',
+            '/home/alexei/schoolbook/schoolbook/article/templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
