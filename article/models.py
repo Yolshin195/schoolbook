@@ -22,7 +22,7 @@ class Article(models.Model):
     
     article_tableofcontent = models.ForeignKey(TableOfContents)
     article_title = models.CharField(max_length = 200)
-    article_taxt = models.TextField()
+    article_content = models.TextField()
     article_date = models.DateTimeField()
 
     def __unicode__(self):

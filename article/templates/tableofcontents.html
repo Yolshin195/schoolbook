@@ -1,3 +1,5 @@
+{% extends 'main.html' %}
+
 {% block content %}
     {% for post in object_list %}
         <h2><a href="{{ post.get_absolute_url }}">{{ post.table_title }}</a></h2>
