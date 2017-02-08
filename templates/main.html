@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>Project name</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
@@ -36,16 +36,16 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="/">Project name</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
             <li class="dropdown">
@@ -62,9 +62,9 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://getbootstrap.com/examples/navbar/">Default</a></li>
-            <li><a href="http://getbootstrap.com/examples/navbar-static-top/">Static top</a></li>
-            <li class="active"><a href="http://getbootstrap.com/examples/navbar-fixed-top/">Fixed top <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Default</a></li>
+            <li><a href="#">Static top</a></li>
+            <li class="active"><a href="/admin/">Admin panel<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -74,14 +74,15 @@
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Оглавление</h1>
+              <h1>{% if article.article_title %} {{ article.article_title }} {% else %} Содержание {% endif %}</h1>
         <p>
         {% block content %}{% endblock %}
         </p>
-        <p>To see the difference between static and fixed top navbars, just scroll.</p>
-        <p>
-          <a class="btn btn-lg btn-primary" href="http://getbootstrap.com/components/#navbar" role="button">View navbar docs »</a>
-        </p>
+        {%if article.rticle_test %}
+			<p>
+                <a class="btn btn-lg btn-primary" href="/" role="button">Проверить себя</a> 
+            </p>
+        {% endif %} 
       </div>
 
     </div> <!-- /container -->
