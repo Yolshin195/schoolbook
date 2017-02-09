@@ -1,10 +1,9 @@
 {% extends 'main.html' %}
 
 {% block content %}
+<hr>
     {% for post in object_list %}
-        <p>{{ post.article_date }}</p>
         <h2><a href="{{ post.get_absolute_url }}">{{ post.article_title }}</a></h2>
-        <p>{{ post.article_content }}</p>
     {% empty %}
     <p>Нет постов</p>
     {% endfor %}

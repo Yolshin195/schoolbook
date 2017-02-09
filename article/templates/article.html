@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    <p>{{ article.article_date }}</p>
-    <p>{{ article.article_content }}</p>
+<hr>
+    <h5>{{ article.article_date }}</h5>
+    <p>{{ article.article_content|safe|escape }}</p>
 {% endblock %}
