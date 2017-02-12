@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block title %}
+<h2> {{question.object_list.get.question_question_list }} </h2>
+{{get_context_data}}
+
+{% endblock%}
+
+{% block content %}
+<div class="container">
+{% for post in question %}
+    <p> {{ post }}</p>
+{% endfor %}
+</div>
+
+<div class="bootom">
+    <ul class="pagination pagination-lg">
+        {% if question.has_previous %}
+            <li><a href="?page={{ question.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><a href="#">&laquo;</a></li>
+        {% endif %}
+
+        {% for page in question.paginator.page_range %}
+            {% if page == question.number %}
+                <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+            {% else %}
+                <li><a href="?page={{ page }}">{{ page }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if question.has_next %}
+            <li><a href="?page={{ question.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><a href="#">&raquo;</a></li>
+        {% endif %}
+    </ul>
+</div>
+
+{% endblock %}

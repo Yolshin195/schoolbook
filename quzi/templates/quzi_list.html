@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 
 {% block title %}
-    <h2> {{ object_list.get.article_tableofcontent }} </h2>
+    <h2> Тест </h2>
 {% endblock%}
 
 {% block content %}
@@ -9,7 +9,10 @@
 	<table class="table table-hover">
     {% for post in object_list %}
 		<tr>
-    		<td><h3><a href="{{ post.get_absolute_url }}">{{ post.article_title }}</a></h3></td>
+    		<td>
+                <h3><a href="{{post.get_absolute_url}}">{{ post.question_list_title }}</a></h3>
+                <h5>{{ post.question_list_content }}</h5>
+            </td>
   		</tr>
     {% empty %}
 	</table>

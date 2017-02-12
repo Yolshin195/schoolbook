@@ -42,13 +42,13 @@
 		</button>
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Project name</a>
+          <a class="navbar-brand" href="/">Информационно-Образовательный Ресурс</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="/">Главная</a></li>
+            <li><a href="/">каталог</a></li>
+            <li><a href="/quzi/ ">Тесты</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -63,19 +63,18 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Default</a></li>
-            <li><a href="#">Static top</a></li>
+            <li><a href="#">О сайте</a></li>
+            <li><a href="#">Автроы</a></li>
             <li class="active"><a href="/admin/">Admin panel<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
     <div class="container">
 
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
-              <h1>{% if article.article_title %} {{ article.article_title }} {% else %} Содержание {% endif %}</h1>
+              {% block title %} <h2> Информационно-Образовательный Ресурс </h2> {% endblock %}
         <p>
         {% block content %}{% endblock %}
         </p>

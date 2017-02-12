@@ -11,9 +11,11 @@ class TableOfContents(models.Model):
     def __unicode__(self):
         return self.table_title
 
+    def __str__(self):
+        return self.table_title
+
     def get_absolute_url(self):
         return "/articles/%i/" % self.id
-    
 
 
 class Article(models.Model):   
@@ -26,6 +28,9 @@ class Article(models.Model):
     article_date = models.DateTimeField()
 
     def __unicode__(self):
+        return self.article_title
+
+    def __str__(self):
         return self.article_title
 
     def get_absolute_url(self):
