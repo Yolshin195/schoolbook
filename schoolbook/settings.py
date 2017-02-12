@@ -60,6 +60,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, "templates/"),
             os.path.join(BASE_DIR, "article/templates/"),
+            os.path.join(BASE_DIR, "quzi/templates/"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
