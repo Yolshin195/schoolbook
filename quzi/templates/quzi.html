@@ -14,7 +14,7 @@
 </div>
 <form class="form-horizontal" role="form" >
 <div class="table-responsive">
-  <table class="table" id="answer_div">
+  <table bgcolor="white" class="table" id="answer_div">
   </table>
 </div>
 </form>
@@ -55,16 +55,16 @@
             $.getJSON("/quzi/answer/" + most_recent.attr('id') + "/",
 				function(data){
             		cycle_class = true        
-                		? "active" : "info";
+                		? "" : "";
 					jQuery.each(data, function(){
 						update_holder.prepend('<tr class="'+ cycle_class +'">'
-							+ '<td><label>'
+							+ '<td style="width: 30px;" ><label>'
 							+ '<input type="checkbox" value="' + this.fields.ansver_boolean +'">'
 							+ '</label></td>'
 							+ '<td>' + this.fields.ansver_content + '</td>'
 							+ '</tr>');
                 	cycle_class = (cycle_class == "info")
-                		? "active" : "info";
+                		? "" : "";
 					});
 				}
             )
