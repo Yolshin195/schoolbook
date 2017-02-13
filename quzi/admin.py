@@ -14,11 +14,18 @@ class QuestionAdmin(admin.ModelAdmin):
     foelss = ['question_content']
     inlines = [AnswerInlone]
 
+    class Media:
+        js = (
+            '/static/js/tinymce/tinymce.min.js',
+            '/static/js/tinymce/tinymce.init.js',
+        )
+
 
 class QuestionListAdmin(admin.ModelAdmin):
     list_display = ('question_list_title',)
     fields = ['question_list_title', 'question_list_content']
     # list_filter = ['article_date']
+
 
 admin.site.register(QuestionList, QuestionListAdmin)
 admin.site.register(Question, QuestionAdmin)
