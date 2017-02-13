@@ -8,7 +8,7 @@ class QuestionInline(admin.StackedInline):
 
 class AnswerInlone(admin.StackedInline):
     model = Answer
-    extra = 1
+    extra = 4
 
 class QuestionAdmin(admin.ModelAdmin):
     foelss = ['question_content']
@@ -26,7 +26,13 @@ class QuestionListAdmin(admin.ModelAdmin):
     fields = ['question_list_title', 'question_list_content']
     # list_filter = ['article_date']
 
+class AnswerCSS(admin.ModelAdmin):
+    class Media:
+        js = (
+            '/static/js/tinymce/tinymce.min.js',
+            '/static/js/tinymce/tinymce.init.js',
+        )
 
 admin.site.register(QuestionList, QuestionListAdmin)
 admin.site.register(Question, QuestionAdmin)
-admin.site.register(Answer)
+admin.site.register(Answer, AnswerCSS)
