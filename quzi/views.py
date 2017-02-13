@@ -3,6 +3,8 @@ from django.views.generic import ListView, DetailView
 from quzi.models import QuestionList, Question, Answer
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
+from django.http import HttpResponse
+from django.core import serializers
 
 # Create your views here.
 class QuziListView(ListView): # представление в виде списка
@@ -24,3 +26,12 @@ def question_list(request, pk):
         question = paginator.page(paginator.num_pages)
 
     return render_to_response('quzi.html', {"question": question})
+
+def answer(request, pk):
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(serializers.serialize("json",
+        Answer.objects.filter(answer_question_id=pk) 
+    ))
+    return response
+

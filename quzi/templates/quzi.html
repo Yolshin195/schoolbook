@@ -2,16 +2,23 @@
 
 {% block title %}
 <h2> {{question.object_list.get.question_question_list }} </h2>
-{{get_context_data}}
-
 {% endblock%}
 
 {% block content %}
-<div class="container">
+<hr>
+<div class="container" id="container">
 {% for post in question %}
-    <p> {{ post }}</p>
+<p id="{{post.id}}"> {{ post }}</p>
 {% endfor %}
+<br>
 </div>
+<form class="form-horizontal" role="form" >
+<div class="table-responsive">
+  <table class="table" id="answer_div">
+  </table>
+</div>
+</form>
+<br>
 
 <div class="bootom">
     <ul class="pagination pagination-lg">
@@ -23,7 +30,7 @@
 
         {% for page in question.paginator.page_range %}
             {% if page == question.number %}
-                <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+                <li class="active" id="active"><a href="?page={{ page }}">{{ page }}</a></li>
             {% else %}
                 <li><a href="?page={{ page }}">{{ page }}</a></li>
             {% endif %}
@@ -37,4 +44,32 @@
     </ul>
 </div>
 
+{% endblock %}
+
+{% block answerJS %}
+    <script type="text/javascript" language="javascript">
+		function answerJS() {
+            container = $("#container")
+			most_recent = container.find("p:first");
+    		update_holder = $("#answer_div");
+            $.getJSON("/quzi/answer/" + most_recent.attr('id') + "/",
+				function(data){
+            		cycle_class = true        
+                		? "active" : "info";
+					jQuery.each(data, function(){
+						update_holder.prepend('<tr class="'+ cycle_class +'">'
+							+ '<td><label>'
+							+ '<input type="checkbox" value="' + this.fields.ansver_boolean +'">'
+							+ '</label></td>'
+							+ '<td>' + this.fields.ansver_content + '</td>'
+							+ '</tr>');
+                	cycle_class = (cycle_class == "info")
+                		? "active" : "info";
+					});
+				}
+            )
+        }
+    	$(document).ready(answerJS()
+    	)
+    </script>
 {% endblock %}

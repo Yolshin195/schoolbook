@@ -75,9 +75,9 @@
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
               {% block title %} <h2> Информационно-Образовательный Ресурс </h2> {% endblock %}
-        <p>
+
         {% block content %}{% endblock %}
-        </p>
+
         {%if article.rticle_test %}
 			<p>
                 <a class="btn btn-lg btn-primary" href="/" role="button">Проверить себя</a> 
@@ -96,6 +96,6 @@
     <script src="{% static "js/bootstrap.js" %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
-  
+    {% block answerJS %} {% endblock %}
 
 </body></html>
