@@ -1,5 +1,49 @@
-{% extends 'quzi.html' %}
+{% extends 'main.html' %}
+{% load staticfiles %}
 
-{% block answer %}
+{% block title %}
+<h2 class="answer_id" id="{{titl.id}}"> {{ titl }} </h2>
+{% endblock%}
 
+{% block content %}
+<hr id="test" >
+<div class="container" id="content">
+        <p id="question"> </p>
+<!-- варианты ответов на вопрос-->  
+<br>
+<form class="form-horizontal" role="form" name="form_answer" >
+    <input type="hidden" name="number" value="">
+    <input type="hidden" name="has_previous" value="">
+    <input type="hidden" name="has_next" value="">
+<div class="table-responsive">
+  <table bgcolor="white" class="table" id="answer">
+  </table>
+</div>
+</form>
+<br>
+</div>
+
+
+<div class="progress" id="progress">
+  <div class="progress-bar progress-bar-success" style="width: 35%">
+    <span class="sr-only">35% Complete (success)</span>
+  </div>
+  <div class="progress-bar progress-bar-warning" style="width: 20%">
+    <span class="sr-only">20% Complete (warning)</span>
+  </div>
+  <div class="progress-bar progress-bar-danger" style="width: 10%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+</div>
+
+<ul class="pager">
+            <li class="next"><a onclick="answer()" >Следующий &rarr;</a></li>
+            <li class="next"><a onclick="prob()" >проверить</a></li>
+</ul>
+{% endblock %}
+
+{% block answerJS %}
+
+    <script type="text/javascript" language="javascript" src="{% static "js/quzi/plaginator.js" %}">
+    </script>
 {% endblock %}

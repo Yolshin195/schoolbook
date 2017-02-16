@@ -1,18 +1,25 @@
 {% extends 'main.html' %}
+{% load staticfiles %}
 
 {% block title %}
 <h2> {{question.object_list.get.question_question_list }} </h2>
 {% endblock%}
 
+<!-- вопрос-->
 {% block content %}
-<hr>
+<hr id="test" >
 <div class="container" id="container">
 {% for post in question %}
-<p id="{{post.id}}"> {{ post|safe|escape }}</p>
+<p id="{{post.id}}">{{ post|safe|escape }}</p>
 {% endfor %}
+
+<!-- варианты ответов на вопрос-->  
 <br>
 </div>
-<form class="form-horizontal" role="form" >
+<form class="form-horizontal" role="form" name="form_answer" >
+    <input type="hidden" name="number" value="{{ question.number }}">
+    <input type="hidden" name="has_previous" value="{{ question.has_previous }}">
+    <input type="hidden" name="has_next" value="{{ question.has_next }}">
 <div class="table-responsive">
   <table bgcolor="white" class="table" id="answer_div">
   </table>
@@ -20,6 +27,35 @@
 </form>
 <br>
 
+<div class="progress">
+  <div class="progress-bar progress-bar-success" style="width: 35%">
+    <span class="sr-only">35% Complete (success)</span>
+  </div>
+  <div class="progress-bar progress-bar-warning" style="width: 20%">
+    <span class="sr-only">20% Complete (warning)</span>
+  </div>
+  <div class="progress-bar progress-bar-danger" style="width: 10%">
+    <span class="sr-only">10% Complete (danger)</span>
+  </div>
+</div>
+
+<ul class="pager">
+        {% if question.has_previous %}
+            <li class="previous"><a href="?page={{ question.previous_page_number }}">&larr; Предыдущий</a></li>
+        {% else %}
+            <li class="previous disabled"><a href="#">&larr; Предыдущий</a></li>
+        {% endif %}
+
+        {% if question.has_next %}
+            <li class="next"><a href="?page={{ question.next_page_number }}">Следующий &rarr;</a></li>
+        {% else %}
+            <li class="next disabled"><a href="#">Следующий &rarr;</a></li>
+        {% endif %}
+</ul>
+
+
+<!-- Панель навигации -->
+<!--
 <div class="bootom">
     <ul class="pagination pagination-lg">
         {% if question.has_previous %}
@@ -43,6 +79,7 @@
         {% endif %}
     </ul>
 </div>
+-->
 
 {% endblock %}
 
@@ -59,7 +96,7 @@
 					jQuery.each(data, function(){
 						update_holder.prepend('<tr class="'+ cycle_class +'">'
 							+ '<td style="width: 30px;" ><label>'
-							+ '<input type="checkbox" value="' + this.fields.ansver_boolean +'">'
+							+ '<input type="checkbox" name="checkbox" value="' + this.fields.ansver_boolean +'">'
 							+ '</label></td>'
 							+ '<td>' + this.fields.ansver_content + '</td>'
 							+ '</tr>');
@@ -71,5 +108,7 @@
         }
     	$(document).ready(answerJS()
     	)
+    </script>
+    <script type="text/javascript" language="javascript" src="{% static "js/quzi/test.js" %}">
     </script>
 {% endblock %}
