@@ -12,9 +12,9 @@ var content1 = $.ajax({
 
 console.log(content1);
 
-var content = JSON.parse(content1);
+var content_server = JSON.parse(content1);
 
-console.log(content);
+console.log(content_server);
 
 function pl(array){
     var nextIndex = 0;
@@ -29,7 +29,7 @@ function pl(array){
     }
 }
 
-var it = pl(content);
+var it = pl(content_server);
 function answer(){
 // функция отрисовки страницы 
     var content = it.next().value
@@ -53,12 +53,13 @@ function answer(){
     else{
             alert("тест пройден")
     }
+    return content
 }
+
 function prob(){
     var element = document.getElementsByName("checkbox");
     console.log(element);
     if (element.length != 0){
-        procent = 100 / content.length;
         var ind = 0;
         for (xer of element){
             console.log("value " + xer.value);
@@ -87,3 +88,36 @@ function prob(){
     }
 
 }
+
+function progres(id, percent, classlist){
+    classlist = classlist || "";
+    progress = '<div class="progress-bar '+ classlist +'" id="'+ id +'" style="width:' + procent + '%">'
+        + '<span class="sr-only">' + procent + '% Complete (danger)</span>'
+        + '</div>';
+
+    document.getElementById("progress").innerHTML += progress;
+}
+
+function check(){
+    // проверяет былли активизхирован хотябы один checkbox
+    var element = document.getElementsByName("checkbox");
+    var check1 = false
+    if (element.length != 0) {
+        for (xer of element){
+            if (xer.checked){
+                check1 = true;
+                break;
+            }
+        }
+    }
+    return check1
+}
+
+function main(){
+    var content = answer()
+    //рисуем прогрес бар
+    procent = 100 / content_server.length;
+    progres(content.question_id, procent);
+}
+main()
+
