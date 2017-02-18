@@ -51,51 +51,34 @@ function answer(){
         }
     }
     else{
-            alert("тест пройден")
+         alert("тест пройден")
     }
     return content
 }
 
-function prob(){
+function prob(ob){
     var element = document.getElementsByName("checkbox");
     console.log(element);
     if (element.length != 0){
         var ind = 0;
         for (xer of element){
-            console.log("value " + xer.value);
-            console.log("checked "+ xer.checked);
             if (''+xer.checked+'' == xer.value){
-                console.log("PFFFFF");
                 ind = ind + 1;
             }
         }
         console.log(ind);
         if ('' + ind + '' == '' + element.length + ''){
-            progress = '<div class="progress-bar progress-bar-success" style="width:' + procent + '%">'
-                + '<span class="sr-only">' + procent + '% Complete (success)</span>'
-                + '</div>';
-
-            document.getElementById("progress").innerHTML += progress
+            console.log(ob)    
+            ob.classList += " progress-bar-success"
+            return true
         }else{
-            progress = '<div class="progress-bar progress-bar-danger" style="width:' + procent + '%">'
-                + '<span class="sr-only">' + procent + '% Complete (danger)</span>'
-                + '</div>';
-
-            document.getElementById("progress").innerHTML += progress
-        
+            console.log(ob)    
+            ob.classList += " progress-bar-danger"
+            return false
         }
 
     }
 
-}
-
-function progres(id, percent, classlist){
-    classlist = classlist || "";
-    progress = '<div class="progress-bar '+ classlist +'" id="'+ id +'" style="width:' + procent + '%">'
-        + '<span class="sr-only">' + procent + '% Complete (danger)</span>'
-        + '</div>';
-
-    document.getElementById("progress").innerHTML += progress;
 }
 
 function check(){
@@ -112,12 +95,36 @@ function check(){
     }
     return check1
 }
-
+var content_a
+var id_list = 0
 function main(){
-    var content = answer()
+    id_list++
+    content_a = answer()
     //рисуем прогрес бар
     procent = 100 / content_server.length;
-    progres(content.question_id, procent);
+    progress = '<div class="progress-bar" name="progress_bar" id="'+ content_a.question_id +'" style="width:' + procent + '%">'
+        + '<span class="sr-only">' + procent + '% Complete (danger)</span>'
+        + '</div>';
+
+    document.getElementById("progress").innerHTML += progress;
+}
+var progress_bar
+function test (){
+    progress_bar = document.getElementsByName("progress_bar");
+    console.log(progress_bar)
+    if (check()){
+        prob(progress_bar[id_list - 1])
+        if (main()){
+            alert("тест завершон");
+        }
+    }else{
+        var div = '<div class="alert alert-danger" role="alert" id="help1"><p>Вы не выбрали не одного варианта ответа</p></div>'; 
+
+        document.getElementById("help").innerHTML = div;
+        setTimeout(function(){
+            $('#help1').remove(); 
+        }, 1000);
+    }
 }
 main()
 

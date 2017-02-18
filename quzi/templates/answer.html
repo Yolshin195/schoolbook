@@ -35,11 +35,12 @@
     <span class="sr-only">10% Complete (danger)</span>
   </div>
 </div>
-
-<ul class="pager">
-            <li class="next"><a onclick="answer()" >Следующий &rarr;</a></li>
-            <li class="next"><a onclick="prob()" >проверить</a></li>
-</ul>
+<div class="pull-right">
+      <button type="button" class="btn btn-primary btn-lg" onclick="test()">Следующий вопрос</button>
+</div>
+<div class="row">
+<div class="col-mb-8" id="help"></div>
+</div> 
 {% endblock %}
 
 {% block answerJS %}
