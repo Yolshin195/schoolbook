@@ -123,6 +123,7 @@ function n(number){
     }
 }
 
+//Блок считывает и запоминает положение checkbox
 function check(number){
     // проверяет былли активизхирован хотябы один checkbox
     var element = document.getElementsByName("checkbox");
@@ -135,6 +136,7 @@ function check(number){
     }
 }
 
+//Воспроизводит положение checkBOX
 function checboxv(number){
     var element = document.getElementsByName("checkbox");
     for (var i = 0; i < checboxvar[number].length; i++){
@@ -142,7 +144,30 @@ function checboxv(number){
     } 
 }
 
-
+//Блок проверки ответов
+function quzi(){
+    var ind = 0;
+    for (var i = 0; i < answerarray.length; i++){
+        console.log("первый фор "+i);
+        if (checboxvar[i]){
+            console.log("первый if "+i);
+            ind = 0; 
+            for(var j =0; j < checboxvar[i].length; j++ ){
+                console.log("Второй фор "+j+ "i = "+ i);
+                if(checboxvar[i][j] == content_server[i].answer[j].ansver_boolean){
+                    console.log(i, j);
+                    ind = ind + 1;
+                    console.log("ind = "+ ind + "  checboxvar[" + i + "] =" + checboxvar[i].length)
+                }
+            }
+            if ('' + ind + '' == '' + checboxvar[i].length + ''){
+                console.log('верный');
+                answerarray[i] = true;
+            }
+        }
+        
+    } 
+}
 
 //текущее положение
 var current = 0; 
