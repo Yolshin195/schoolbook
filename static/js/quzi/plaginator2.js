@@ -1,7 +1,9 @@
 most_recent = $(".answer_id")
 
+//контент очищаем прогрес бар
 document.getElementById("progress").innerHTML = ""
 
+//запрашиваем данные с сервера
 var content1 = $.ajax({
     type: "GET",
     url: "/quzi/testJS/" + most_recent.attr('id') + "/",
@@ -10,12 +12,15 @@ var content1 = $.ajax({
     async: false
 }).responseText;
 
+//выводим ответ в консоль
 console.log(content1);
 
+//парсим ответ
 var content_server = JSON.parse(content1);
 
 console.log(content_server);
 
+//контент генерация и отрисовка html вопросса и ответов
 function answer(content){
 // функция отрисовки страницы 
 
@@ -38,6 +43,7 @@ function answer(content){
     return content
 }
 
+//плагинатор генерация и отрисовка html
 function plaginator(length){
     var element = '<li class="previous disabled" id="previous"><a role="button" onclick="previous()">&laquo;</a></li>';
     document.getElementById("pager").innerHTML = element 
@@ -49,6 +55,7 @@ function plaginator(length){
     document.getElementById("pager").innerHTML += element 
 }
 
+//Плагинация следующий вопрос
 function next() {
     if (current < content_server.length - 1){
         current++;
@@ -64,6 +71,8 @@ function next() {
     document.getElementById("page"+ (current-1)).classList = "" 
     return current;
 }
+
+//Плагинация вернутся на один вопрос назад
 function previous() {
     if (current != 0 ){
         current--;
@@ -80,6 +89,7 @@ function previous() {
     return current;
 }
 
+//плагинация переключение на произвольную страницу
 function n(number){
     document.getElementById("page"+ number).classList = "active" 
     document.getElementById("page"+ current).classList = "" 
