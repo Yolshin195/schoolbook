@@ -35,16 +35,22 @@
     <span class="sr-only">10% Complete (danger)</span>
   </div>
 </div>
-<div class="pull-right">
-      <button type="button" class="btn btn-primary btn-lg" onclick="test()">Следующий вопрос</button>
+<div>
+<ul class="pagination pagination-lg" id="pager">
+    <li class="previous disabled" id="previous"><a role="button">&laquo;</a></li>
+    <li class=""><a role="button">1</a></li>
+    <li class=""><a role="button">2</a></li>
+    <li class=""><a role="button">3</a></li>
+    <li class=""><a role="button">4</a></li>
+    <li class=""><a role="button">5</a></li>
+    <li><a role="button" onclick="answer(content_server[0])">6</a></li>
+    <li class="next" id="next"><a href="#">&raquo;</a></li>
+</ul>
 </div>
-<div class="row">
-<div class="col-mb-8" id="help"></div>
-</div> 
 {% endblock %}
 
 {% block answerJS %}
 
-    <script type="text/javascript" language="javascript" src="{% static "js/quzi/plaginator.js" %}">
+    <script type="text/javascript" language="javascript" src="{% static "js/quzi/plaginator2.js" %}">
     </script>
 {% endblock %}

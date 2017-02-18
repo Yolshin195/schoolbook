@@ -113,7 +113,7 @@ function test (){
     progress_bar = document.getElementsByName("progress_bar");
     console.log(progress_bar)
     if (check()){
-        prob(progress_bar[id_list - 1])
+        prob(progress_bar[id_list -1])
         if (main()){
             alert("тест завершон");
         }
