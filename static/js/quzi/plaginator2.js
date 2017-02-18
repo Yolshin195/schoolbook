@@ -57,6 +57,7 @@ function plaginator(length){
 
 //Плагинация следующий вопрос
 function next() {
+    check(current)
     if (current < content_server.length - 1){
         current++;
         answer(content_server[current]);
@@ -69,11 +70,16 @@ function next() {
     }
     document.getElementById("page"+ current).classList = "active" 
     document.getElementById("page"+ (current-1)).classList = "" 
+    answer(content_server[current])
+    if (checboxvar[i]){
+        checboxv(current);
+    }
     return current;
 }
 
 //Плагинация вернутся на один вопрос назад
 function previous() {
+    check(current)
     if (current != 0 ){
         current--;
         answer(content_server[current]);
@@ -86,11 +92,16 @@ function previous() {
     }
     document.getElementById("page"+ current).classList = "active" 
     document.getElementById("page"+ (current+1)).classList = "" 
+    answer(content_server[current])
+    if (checboxvar[i]){
+        checboxv(current);
+    }
     return current;
 }
 
 //плагинация переключение на произвольную страницу
 function n(number){
+    check(current)
     document.getElementById("page"+ number).classList = "active" 
     document.getElementById("page"+ current).classList = "" 
     current = number
@@ -107,8 +118,41 @@ function n(number){
         document.getElementById("previous").classList = "previous" 
     }
     answer(content_server[current])
+    if (checboxvar[current]){
+        checboxv(current);
+    }
 }
+
+function check(number){
+    // проверяет былли активизхирован хотябы один checkbox
+    var element = document.getElementsByName("checkbox");
+    checboxvar[number] = [];
+    var i = 0;
+    if (element.length != 0) {
+        for (xer of element){
+            checboxvar[number][i++] = xer.checked;
+        }
+    }
+}
+
+function checboxv(number){
+    var element = document.getElementsByName("checkbox");
+    for (var i = 0; i < checboxvar[number].length; i++){
+        element[i].checked = checboxvar[number][i];
+    } 
+}
+
+
+
+//текущее положение
 var current = 0; 
+//инициализация ммасиива ответов
+var answerarray = []
+for (var i = 0; i < content_server.length; i++){
+    answerarray[i] = false;
+}
+var checboxvar = []
+//выводим превый вопрос
 answer(content_server[current]);
 plaginator(content_server.length);
 document.getElementById("page"+ current).classList = "active" 
