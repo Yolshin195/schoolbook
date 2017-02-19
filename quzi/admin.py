@@ -33,7 +33,17 @@ class AnswerCSS(admin.ModelAdmin):
             '/static/js/tinymce/tinymce.init.js',
         )
 
+class CommentsListAdmin(admin.ModelAdmin):
+    list_display = ('procent')
+    fields = ['procent']
+
+    class Media:
+        js = (
+            '/static/js/tinymce/tinymce.min.js',
+            '/static/js/tinymce/tinymce.init.js',
+        )
+
 admin.site.register(QuestionList, QuestionListAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer, AnswerCSS)
-admin.site.register(Comments, AnswerCSS)
+admin.site.register(Comments, CommentsListAdmin)

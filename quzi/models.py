@@ -56,3 +56,9 @@ class Comments(models.Model):
 
     comment_test = models.TextField(verbose_name="Коментарий к тесту")
     procent = models.SmallIntegerField(verbose_name="Процент при котором выводится коментарий")
+
+    def __unicode__(self):
+        return self.procent
+
+    def __str__(self):
+        return self.procent
