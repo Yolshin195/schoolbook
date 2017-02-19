@@ -1,8 +1,5 @@
 most_recent = $(".answer_id")
 
-//контент очищаем прогрес бар
-document.getElementById("progress").innerHTML = ""
-
 //запрашиваем данные с сервера
 var content1 = $.ajax({
     type: "GET",
@@ -166,13 +163,15 @@ function quzi(){
     } 
 }
 
-// блок отрисовки диаграммы 
+// блок отрисовки ответа 
 function chart(){
     quzi();
     var chart_true = 0;
     var chart_false = 0;
     var procent = 100 / content_server.length;
     var progress;
+    var progress_content = '<div class="progress" id="progress"> </div>';
+    document.getElementById("quzi_content").innerHTML = progress_content;
     document.getElementById("progress").innerHTML = "";
     for (variant of answerarray){
         if (variant){
