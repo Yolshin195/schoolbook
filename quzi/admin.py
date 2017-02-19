@@ -34,8 +34,7 @@ class AnswerCSS(admin.ModelAdmin):
         )
 
 class CommentsListAdmin(admin.ModelAdmin):
-    list_display = ('procent')
-    fields = ['procent']
+    list_display = ('procent',)
 
     class Media:
         js = (
