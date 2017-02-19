@@ -71,7 +71,7 @@ function next() {
     document.getElementById("page"+ current).classList = "active" 
     document.getElementById("page"+ (current-1)).classList = "" 
     answer(content_server[current])
-    if (checboxvar[i]){
+    if (checboxvar[current]){
         checboxv(current);
     }
     return current;
@@ -93,7 +93,7 @@ function previous() {
     document.getElementById("page"+ current).classList = "active" 
     document.getElementById("page"+ (current+1)).classList = "" 
     answer(content_server[current])
-    if (checboxvar[i]){
+    if (checboxvar[current]){
         checboxv(current);
     }
     return current;
@@ -146,27 +146,51 @@ function checboxv(number){
 
 //Блок проверки ответов
 function quzi(){
+    check(current);
     var ind = 0;
     for (var i = 0; i < answerarray.length; i++){
-        console.log("первый фор "+i);
         if (checboxvar[i]){
-            console.log("первый if "+i);
             ind = 0; 
             for(var j =0; j < checboxvar[i].length; j++ ){
-                console.log("Второй фор "+j+ "i = "+ i);
                 if(checboxvar[i][j] == content_server[i].answer[j].ansver_boolean){
-                    console.log(i, j);
                     ind = ind + 1;
-                    console.log("ind = "+ ind + "  checboxvar[" + i + "] =" + checboxvar[i].length)
                 }
             }
             if ('' + ind + '' == '' + checboxvar[i].length + ''){
-                console.log('верный');
                 answerarray[i] = true;
+            }else{
+                answerarray[i] = false;
             }
         }
         
     } 
+}
+
+// блок отрисовки диаграммы 
+function chart(){
+    quzi();
+    var chart_true = 0;
+    var chart_false = 0;
+    var procent = 100 / content_server.length;
+    var progress;
+    document.getElementById("progress").innerHTML = "";
+    for (variant of answerarray){
+        if (variant){
+            chart_true++; 
+            progress = '<div class="progress-bar progress-bar-success" name="progress_bar" style="width:' + procent + '%">'
+                + '<span class="sr-only">' + procent + '% Complete (danger)</span>'
+                + '</div>';
+
+            document.getElementById("progress").innerHTML += progress;
+        }else{
+            chart_false++; 
+            progress = '<div class="progress-bar progress-bar-danger" name="progress_bar" style="width:' + procent + '%">'
+                + '<span class="sr-only">' + procent + '% Complete (danger)</span>'
+                + '</div>';
+
+            document.getElementById("progress").innerHTML += progress;
+        } 
+    }
 }
 
 //текущее положение
