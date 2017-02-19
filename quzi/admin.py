@@ -1,5 +1,5 @@
 from django.contrib import admin
-from quzi.models import QuestionList, Question, Answer
+from quzi.models import QuestionList, Question, Answer, Comments
 
 # Register your models here.
 class QuestionInline(admin.StackedInline):
@@ -36,3 +36,4 @@ class AnswerCSS(admin.ModelAdmin):
 admin.site.register(QuestionList, QuestionListAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer, AnswerCSS)
+admin.site.register(Comments, AnswerCSS)

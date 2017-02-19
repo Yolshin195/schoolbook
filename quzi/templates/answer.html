@@ -12,32 +12,20 @@
         <p id="question"> </p>
 <!-- варианты ответов на вопрос-->  
 <br>
-<form class="form-horizontal" role="form" name="form_answer" >
-    <input type="hidden" name="number" value="">
-    <input type="hidden" name="has_previous" value="">
-    <input type="hidden" name="has_next" value="">
 <div class="table-responsive">
   <table bgcolor="white" class="table" id="answer">
   </table>
 </div>
-</form>
 </div>
 
-<div class="center-block">
 <ul class="pagination pagination-lg" id="pager">
     <li class="previous disabled" id="previous"><a role="button">&laquo;</a></li>
-    <li class=""><a role="button">1</a></li>
-    <li class=""><a role="button">2</a></li>
-    <li class=""><a role="button">3</a></li>
-    <li class=""><a role="button">4</a></li>
-    <li class=""><a role="button">5</a></li>
-    <li><a role="button" onclick="answer(content_server[0])">6</a></li>
     <li class="next" id="next"><a href="#">&raquo;</a></li>
 </ul>
 <p>
 	<button type="button" class="btn btn-primary btn-lg" onclick="chart()">Узнать результат</button>
 </p>
-</div>
+
 </div>
 {% endblock %}
 

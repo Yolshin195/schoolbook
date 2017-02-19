@@ -15,7 +15,21 @@ console.log(content1);
 //парсим ответ
 var content_server = JSON.parse(content1);
 
-console.log(content_server);
+
+function quzi_comments (procent){
+    var comments = $.ajax({
+        type: "GET",
+        url: "/quzi/comments/" + procent + "/",
+        dataType: "jsonp",
+        success: function (data){data;},
+        async: false
+    }).responseText;
+
+    //парсим ответ
+    var comments_server = JSON.parse(comments);
+    return comments_server[0].fields.comment_test;
+}
+
 
 //контент генерация и отрисовка html вопросса и ответов
 function answer(content){
@@ -170,7 +184,10 @@ function chart(){
     var chart_false = 0;
     var procent = 100 / content_server.length;
     var progress;
-    var progress_content = '<div class="progress" id="progress"> </div>';
+    var progress_content = '<div id="quzi_comments"></div>'
+        + '<div class="progress" id="progress"> </div>'
+		+ '<div class="list-group" id="reply">'
+		+ '</div>';
     document.getElementById("quzi_content").innerHTML = progress_content;
     document.getElementById("progress").innerHTML = "";
     for (variant of answerarray){
@@ -190,6 +207,38 @@ function chart(){
             document.getElementById("progress").innerHTML += progress;
         } 
     }
+    var amount_true = procent * chart_true;
+    switch (true){
+        case amount_true >= 0 && amount_true <= 20: 
+            amount_true = 20;
+            break;
+
+        case amount_true > 20 && amount_true <= 50:
+            amount_true = 50;
+            break;
+
+        case amount_true > 50 && amount_true <= 70:
+            amount_true = 70;
+            break;
+
+        case amount_true > 70 && amount_true <= 90:
+            amount_true = 90;
+            break;
+
+        case amount_true > 90 && amount_true <= 100:
+            amount_true = 100;
+            break;
+
+        default:
+            amount_true = 0;
+    }
+    document.getElementById("quzi_comments").innerHTML = quzi_comments(amount_true);
+	var reply = '<a href="'+ location.href 
+		+'" class="alert list-group-item" onclik="start()">'
+    	+ '<p class="list-group-item-text">Правильных ответов '
+		+ chart_true +' из ' + content_server.length + '</p>'
+  		+ '</a>';
+    document.getElementById("reply").innerHTML = reply
 }
 
 //текущее положение

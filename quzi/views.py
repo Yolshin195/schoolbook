@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from quzi.models import QuestionList, Question, Answer
+from quzi.models import QuestionList, Question, Answer, Comments
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
@@ -67,3 +67,12 @@ def testJS(request, pk):
 def test(request, pk):
     titl = QuestionList.objects.get(id=pk)
     return render_to_response('answer.html', {"titl": titl})
+
+
+def comments(request, pk):
+    response = HttpResponse()
+    response['Content-Type'] = "text/javascript"
+    response.write(serializers.serialize("json",
+        Comments.objects.filter(procent=pk) 
+    ))
+    return response

@@ -48,3 +48,11 @@ class Answer(models.Model):
 
     def __unicode__(self):
         return self.question_title
+
+
+class Comments(models.Model):
+    class Meta:
+        db_table = "Comments"
+
+    comment_test = models.TextField(verbose_name="Коментарий к тесту")
+    procent = models.SmallIntegerField(verbose_name="Процент при котором выводится коментарий")
