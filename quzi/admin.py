@@ -23,7 +23,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 class QuestionListAdmin(admin.ModelAdmin):
     list_display = ('question_list_title',)
-    fields = ['question_list_title', 'question_list_content']
+    fields = ['question_list_title', 'question_list_content', "question_list_article_url"]
     # list_filter = ['article_date']
 
 class AnswerCSS(admin.ModelAdmin):

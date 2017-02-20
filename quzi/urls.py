@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from django.contrib import admin
-from quzi.views import QuziListView, question_list, answer, testJS, test, comments
+from quzi.views import QuziListView, answer, testJS, test, comments
 
 admin.autodiscover()
 

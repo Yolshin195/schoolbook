@@ -2,12 +2,12 @@
 {% load staticfiles %}
 
 {% block title %}
-<h2 class="answer_id" id="{{titl.id}}"> {{ titl }} </h2>
+<h2 class="answer_id" id="{{titl.id}}"> {{ titl }}</h2> 
 {% endblock%}
 
 {% block content %}
 <hr id="test" >
-<div id="quzi_content">
+<div id="quzi_content" value="{{titl.question_list_article_url}}">
 <div class="container" id="content">
         <p id="question"> </p>
 <!-- варианты ответов на вопрос-->  

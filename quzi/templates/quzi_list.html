@@ -13,6 +13,9 @@
     		<td>
                 <h3><a href="{{post.get_absolute_url}}">{{ post.question_list_title }}</a></h3>
                 <h5>{{ post.question_list_content }}</h5>
+                {% if post.question_list_article_url != "False" %}
+                        <a href="{{ post.question_list_article_url }}">Перед прохождением рекомендуем почитать</a>
+                {%endif%}
             </td>
   		</tr>
     {% empty %}

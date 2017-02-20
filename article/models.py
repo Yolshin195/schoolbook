@@ -1,4 +1,5 @@
 from django.db import models
+#from quzi.models import QuestionList
 
 # Create your models here.
 
@@ -22,6 +23,18 @@ class Article(models.Model):
     class Meta:
         db_table = "article"   
     
+    """
+    quzi_url_list = [] 
+    for objects in QuestionList.objects.all(): 
+        quzi_url_list.append((
+            objects.get_absolute_url(),
+            objects.question_list_title,
+        ))
+
+    article_quzi_url = models.CharField(max_length=200, blank=True,
+                                      choices=quzi_url_list,
+                                      default=False)
+    """
     article_tableofcontent = models.ForeignKey(TableOfContents)
     article_title = models.CharField(max_length = 200)
     article_content = models.TextField()

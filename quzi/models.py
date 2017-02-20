@@ -1,12 +1,21 @@
 from django.db import models
-from article.models import Article, TableOfContents
+from article.models import Article 
 
 # Create your models here.
 class QuestionList(models.Model):
     class Meta:
         db_table = 'question_list'
+        
+    article_url_list = [] 
+    for objects in Article.objects.all(): 
+        article_url_list.append((
+            objects.get_absolute_url(),
+            objects.article_title,
+        ))
 
-
+    question_list_article_url = models.CharField(max_length=200, blank=True,
+                                      choices=article_url_list,
+                                      default=False)
     question_list_title = models.CharField(max_length = 200, verbose_name="Название теста")
     question_list_content = models.CharField(max_length = 500, verbose_name="Описание теста")
 
@@ -56,4 +65,3 @@ class Comments(models.Model):
 
     comment_test = models.TextField(verbose_name="Коментарий к тесту")
     procent = models.SmallIntegerField(verbose_name="Процент при котором выводится коментарий")
-
