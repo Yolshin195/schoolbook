@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'article',
     'quzi',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ TEMPLATES = [
             os.path.join(BASE_DIR, "templates/"),
             os.path.join(BASE_DIR, "article/templates/"),
             os.path.join(BASE_DIR, "quzi/templates/"),
+            os.path.join(BASE_DIR, "home/templates/"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {

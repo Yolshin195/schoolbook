@@ -21,6 +21,6 @@ admin.autodiscover()
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^quzi/', include('quzi.urls')),
-
-    url(r'^', include('article.urls')),
+    url(r'^articles/', include('article.urls')),
+    url(r'^', include('home.urls')),
 ]

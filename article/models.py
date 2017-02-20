@@ -47,4 +47,4 @@ class Article(models.Model):
         return self.article_title
 
     def get_absolute_url(self):
-        return "/article/%i/" % self.id
+        return "/articles/article/%i/" % self.id
