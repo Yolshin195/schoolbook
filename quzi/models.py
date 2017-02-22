@@ -1,11 +1,11 @@
 from django.db import models
 from article.models import Article 
+from PIL import Image
 
 # Create your models here.
 class QuestionList(models.Model):
     class Meta:
         db_table = 'question_list'
-        
     article_url_list = [] 
     for objects in Article.objects.all(): 
         article_url_list.append((
@@ -18,6 +18,12 @@ class QuestionList(models.Model):
                                       default=False)
     question_list_title = models.CharField(max_length = 200, verbose_name="Название теста")
     question_list_content = models.CharField(max_length = 500, verbose_name="Описание теста")
+    question_list_image = models.ImageField(
+        blank=True, 
+        upload_to='quzi', 
+        help_text='140x140px', 
+        verbose_name='Ссылка картинки'
+    )
 
     def __unicode__(self):
         return self.question_list_title

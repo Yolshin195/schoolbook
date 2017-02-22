@@ -1,4 +1,6 @@
+import PIL
 from django.db import models
+from PIL import Image
 #from quzi.models import QuestionList
 
 # Create your models here.
@@ -39,6 +41,12 @@ class Article(models.Model):
     article_title = models.CharField(max_length = 200)
     article_content = models.TextField()
     article_date = models.DateTimeField()
+    article_image = models.ImageField(
+        blank=True, 
+        upload_to='article', 
+        help_text='500x500px', 
+        verbose_name='Ссылка картинки'
+    )
 
     def __unicode__(self):
         return self.article_title
