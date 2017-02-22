@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import render_to_response
-from home.models import Slaider
+from home.models import News
 from quzi.models import QuestionList
 from article.models import Article
 
 # Create your views here.
 def home(request):
+    news = []
+    for post in News.objects.order_by('-id'):
+        if len(news) <= 3:
+            news.append(post)
     quzi = []
     for post in QuestionList.objects.order_by('-id'):
         if len(quzi) <= 3:
@@ -14,9 +18,8 @@ def home(request):
     for post in Article.objects.order_by('-id'):
         if len(article) <= 3:
             article.append(post)
-    img = Slaider.objects.get(id=15)
     return render_to_response("home.html", {
-            "img": img,
+            "news": news,
             "quzi": quzi,
             "article": article
         }
