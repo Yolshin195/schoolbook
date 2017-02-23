@@ -42,7 +42,6 @@
 		</button>
       <div class="container">
         <div class="navbar-header">
-                <!--Информационно-Образовательный Ресурс-->
                 <a class="navbar-brand" href="/">SchoolBook</a> 
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -64,8 +63,8 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">О сайте</a></li>
-            <li><a href="#">Авторы</a></li>
+            <li><a href="/about_site/">О сайте</a></li>
+            <li><a href="/authors/">Авторы</a></li>
             <li><a href="/admin/">Admin panel<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -74,12 +73,10 @@
     <div class="container">
 
       <!-- Main component for a primary marketing message or call to action -->
-      <div class="jumbotron">
-              {% block title %} <h2> Информационно-Образовательный Ресурс </h2> {% endblock %}
+    {% block title %} <h2> Информационно-Образовательный Ресурс </h2> {% endblock %}
 
         {% block content %}{% endblock %}
 
-      </div>
 
     </div> <!-- /container -->
 

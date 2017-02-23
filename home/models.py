@@ -1,4 +1,3 @@
-import PIL
 from django.db import models
 from PIL import Image
 
@@ -15,8 +14,29 @@ class News(models.Model):
     news_content = models.TextField(blank=True)
     news_date = models.DateTimeField(auto_now=True)
     news_image = models.ImageField(
-        blank=True, 
-        upload_to='', 
-        help_text='900x500px', 
-        verbose_name='Ссылка картинки'
+        blank = True, 
+        upload_to = '', 
+        help_text = '900x500px', 
+        verbose_name = 'Ссылка картинки'
     )
+
+class Metadata(models.Model):
+    metadata_name = models.CharField(
+        max_length = 200,
+        help_text = 'Название страницы', 
+        verbose_name = 'Имя страницы'
+    )
+    metadata_title = models.CharField(
+        blank = True,
+        max_length = 200,
+        help_text = 'Заголовок страницы', 
+        verbose_name = 'Заголовок'
+    )
+    metadata_content = models.TextField(
+        blank = True,
+        help_text = 'Основной текст', 
+        verbose_name = 'Контент'
+    )
+    
+    def get_absolute_url(self):
+        return "/%s/" % self.metadata_name
