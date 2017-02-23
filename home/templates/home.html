@@ -85,24 +85,48 @@ img[src="//counter.yadro.ru/hit;Common1?t18.9;rhttp%3A//bootstrap-3.ru/index.php
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
+        {% for post in news %}
+        <li data-target="#myCarousel" data-slide-to="{{forloop.counter0}}"
+            class="{%if forloop.first%}active{% endif %}">
+        </li>
+        {% empty %}
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+        {% endfor %}
       </ol>
       <div class="carousel-inner">
-        <div class="item active">
-          <img alt="First slide" src="{{ news.0.news_image.url }}">
+        {% for post in news%}
+        <div class="item{%if forloop.first%} active{% endif %}">
+          <img alt="First slide"
+                {% if not post.news_image %}
+                    src="{{ post.news_image.url }}"
+                {% else %} 
+                data-src="holder.js/900x500/auto/#666:#6a6a6a/text:EROR 404"
+                {% endif %}
+          >
           <div class="container">
             <div class="carousel-caption">
-              <h1>{{ news.0.news_title }}</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code>
+              <h1>
+                {% if post.news_title %}
+                    {{ post.news_title }}
+                {% else %} 
+                    EROR 404 
+                {% endif %}
+              </h1>
+              <p>
+                {% if post.news_content %}
+                    {{ post.news_content }}
+                {% else %} 
+              Note: If you're viewing this page via a <code>file://</code>
  URL, the "next" and "previous" Glyphicon buttons on the left and right 
 might not load/display properly due to web browser security rules.</p>
+                {% endif %}
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
             </div>
           </div>
         </div>
-        <div class="item">
+        {% empty %}
+        <div class="item active">
           <img data-src="holder.js/900x500/auto/#666:#6a6a6a/text:Second slide" alt="Second slide" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNmE2YTZhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+U2Vjb25kIHNsaWRlPC90ZXh0Pjwvc3ZnPg==">
           <div class="container">
             <div class="carousel-caption">
@@ -126,6 +150,7 @@ id nibh ultricies vehicula ut id elit.</p>
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
