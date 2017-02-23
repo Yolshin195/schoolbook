@@ -98,7 +98,7 @@ img[src="//counter.yadro.ru/hit;Common1?t18.9;rhttp%3A//bootstrap-3.ru/index.php
         {% for post in news%}
         <div class="item{%if forloop.first%} active{% endif %}">
           <img alt="First slide"
-                {% if not post.news_image %}
+                {% if post.news_image %}
                     src="{{ post.news_image.url }}"
                 {% else %} 
                 data-src="holder.js/900x500/auto/#666:#6a6a6a/text:EROR 404"
