@@ -12,7 +12,7 @@ class News(models.Model):
     image_img.allow_tags = True
 
     news_title = models.CharField(max_length = 200)
-    news_content = models.TextField()
+    news_content = models.TextField(blank=True)
     news_date = models.DateTimeField(auto_now=True)
     news_image = models.ImageField(
         blank=True, 
