@@ -7,5 +7,5 @@
 {% block content %}
 <hr>
     <h5>{{ article.article_date }}</h5>
-    <p>{{ article.article_content|safe|escape }}</p>
+    {{ article.article_content|safe|escape }}
 {% endblock %}

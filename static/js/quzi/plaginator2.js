@@ -140,10 +140,13 @@ function check(number){
     var element = document.getElementsByName("checkbox");
     checboxvar[number] = [];
     var i = 0;
-    if (element.length != 0) {
-        for (xer of element){
-            checboxvar[number][i++] = xer.checked;
-        }
+    if (element.length) {
+        //for (xer of element){
+        //    checboxvar[number][i++] = xer.checked;
+        //}
+        element.forEach(function(element, index, array){
+            checboxvar[number][index] = element.checked;
+        })
     }
 }
 
@@ -238,18 +241,18 @@ function chart(){
     	+ '<p class="list-group-item-text">Правильных ответов '
 		+ chart_true +' из ' + content_server.length + '</p>'
   		+ '</a>';
-    document.getElementById("reply").innerHTML = reply
+    document.getElementById("reply").innerHTML = reply;
 }
 
 //текущее положение
 var current = 0; 
 //инициализация ммасиива ответов
-var answerarray = []
+var answerarray = [];
 for (var i = 0; i < content_server.length; i++){
     answerarray[i] = false;
 }
-var checboxvar = []
+var checboxvar = [];
 //выводим превый вопрос
 answer(content_server[current]);
 plaginator(content_server.length);
-document.getElementById("page"+ current).classList = "active" 
+document.getElementById("page"+ current).classList = "active";
