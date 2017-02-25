@@ -8,7 +8,9 @@ var request;
 var requestJSON;
 
 function main (content){
-    alert(content); 
+    if (content){
+        alert(content); 
+    }
 }
 
 if (window.XMLHttpRequest) {
