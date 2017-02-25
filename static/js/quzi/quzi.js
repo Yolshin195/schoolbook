@@ -7,6 +7,10 @@ var checboxvar = [];
 var request;
 var requestJSON;
 
+function main (){
+    
+}
+
 if (window.XMLHttpRequest) {
     request = new XMLHttpRequest();
 } else {
