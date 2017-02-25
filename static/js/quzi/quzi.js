@@ -7,9 +7,8 @@ var checboxvar = [];
 var request;
 var requestJSON;
 
-function main (content){
+function render (content){
     if (content){
-        alert(content); 
         var question =  document.getElementById("question");
         question.innerHTML = content.question_content;
         var answers = document.getElementById("answer");
@@ -34,8 +33,10 @@ request.open('GET', '/quzi/testJS/' + most_recent.attr('id') + '/');
 request.onreadystatechange = function(){
     if((request.readyState===4) && (request.status===200)){
         requestJSON = JSON.parse(request.responseText);
-        alert(requestJSON);
-        main(requestJSON[current]);
+        render(requestJSON[current]);
+        for (var i = 0; i < requestJSON.length; i++){
+            answerarray[i] = false;
+        }
         
     }
 }
