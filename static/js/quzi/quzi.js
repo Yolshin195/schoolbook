@@ -19,7 +19,8 @@ if (window.XMLHttpRequest) {
 request.open('GET', '/quzi/testJS/' + most_recent.attr('id') + '/');
 request.onreadystatechange = function(){
     if((request.readyState===4) && (request.status===200)){
-        alert(request);
+        requestJSON = JSON.parse(request.responseText);
+        alert(requestJSON);
         
     }
 }
