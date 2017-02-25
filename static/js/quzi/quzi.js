@@ -117,3 +117,27 @@ function previous() {
     }
     return current;
 }
+
+//плагинация переключение на произвольную страницу
+function n(number){
+    check(current)
+    document.getElementById("page"+ number).className = "active" 
+    document.getElementById("page"+ current).className = "" 
+    current = number
+    if (current == 0) {
+        document.getElementById("previous").className = "previous disabled" 
+    }
+    if (current < requestJSON.length){
+        document.getElementById("next").className = "next" 
+    }
+    if (current == requestJSON.length - 1) {
+        document.getElementById("next").className = "next disabled" 
+    }
+    if (current > 0){
+        document.getElementById("previous").className = "previous" 
+    }
+    render(requestJSON[current])
+    if (checboxvar[current]){
+        checboxv(current);
+    }
+}
