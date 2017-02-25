@@ -15,13 +15,12 @@ function main (content){
         var answers = document.getElementById("answer");
         answers.innerHTML = "";
         for (fields of content.answer){
-            var ckehs = '<tr>'
+            answers.innerHTML += '<tr>'
                 + '<td style="width: 30px;" ><label>'
                 + '<input type="checkbox" name="checkbox" value="' + fields.ansver_boolean +'">'
                 + '</label></td>'
                 + '<td>' + fields.ansver_content + '</td>'
                 + '</tr>';
-            answers.innerHTML += ckehs;
         }
     }
 }
