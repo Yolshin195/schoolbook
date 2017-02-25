@@ -11,10 +11,10 @@ function onAjaxSuccess(data){
     
     alert(data);
     quzi_data = data;
-    answer(data[current])
+ //   answer(data[current])
 }
 
-
+/*
 function answer(content){
 // функция отрисовки страницы 
     if (content){
@@ -34,3 +34,4 @@ function answer(content){
          alert("тест пройден")
     }
 }
+*/
