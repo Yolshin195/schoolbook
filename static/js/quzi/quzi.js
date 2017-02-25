@@ -24,6 +24,23 @@ function render (content){
     }
 }
 
+function plaginator(length){
+    var pager = document.getElementById("pager");
+    pager.innerHTML = '<li class="previous disabled" id="previous">'
+        + '<a role="button" onclick="previous()">&laquo;</a>'
+        + '</li>';
+    for(var number = 0; number < length; number++){
+        pager.innerHTML += '<li id="page'+ number +'">'
+            + '<a role="button"  onclick="n('+ number+')">'
+            + (number + 1) 
+            +'</a></li>';
+    }
+    pager.innerHTML += '<li class="next" id="next">'
+        + '<a role="button" onclick="next()">&raquo;</a>'
+        + '</li>'
+}
+
+// формирование ajax запроса
 if (window.XMLHttpRequest) {
     request = new XMLHttpRequest();
 } else {
@@ -34,6 +51,7 @@ request.onreadystatechange = function(){
     if((request.readyState===4) && (request.status===200)){
         requestJSON = JSON.parse(request.responseText);
         render(requestJSON[current]);
+        plaginator(requestJSON.length)
         for (var i = 0; i < requestJSON.length; i++){
             answerarray[i] = false;
         }
