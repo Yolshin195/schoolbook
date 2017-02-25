@@ -7,27 +7,6 @@ var checboxvar = [];
 var request;
 var requestJSON;
 
-
-function answer(content){
-// функция отрисовки страницы 
-    if (content){
-        var question = document.getElementById("question");
-        question.innerHTML = content.question_content;
-        var answers = document.getElementById("answer");
-        answers.innerHTML = "";
-        for (fields of content.answer){ 
-            var answer = '<tr>'
-                + '<td style="width: 30px;" ><label>'
-                + '<input type="checkbox" name="checkbox" value="'
-                + fields.ansver_boolean +'">'
-                + '</label></td>'
-                + '<td>' + fields.ansver_content + '</td>'
-                + '</tr>';
-            answers.innerHTML += answer      
-        }
-    }
-}
-
 if (window.XMLHttpRequest) {
     request = new XMLHttpRequest();
 } else {
