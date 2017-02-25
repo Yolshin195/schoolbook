@@ -14,6 +14,15 @@ function main (content){
         question.innerHTML = content.question_content;
         var answers = document.getElementById("answer");
         answers.innerHTML = "";
+        for (fields of content.answer){
+            var ckehs = '<tr>'
+                + '<td style="width: 30px;" ><label>'
+                + '<input type="checkbox" name="checkbox" value="' + fields.ansver_boolean +'">'
+                + '</label></td>'
+                + '<td>' + fields.ansver_content + '</td>'
+                + '</tr>';
+            answers.innerHTML += ckehs;
+        }
     }
 }
 
