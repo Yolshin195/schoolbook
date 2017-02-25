@@ -62,3 +62,58 @@ request.onreadystatechange = function(){
 }
 request.send();
 
+//Блок считывает и запоминает положение checkbox
+function check(number){
+    // проверяет былли активизхирован хотябы один checkbox
+    var checkbox = document.getElementsByName("checkbox");
+    checboxvar[number] = [];
+    if (checkbox.length) {
+        for (var i = 0; i < checkbox.length; i++){
+            checboxvar[number][i] = checkbox[i].checked;
+        }
+    }
+}
+
+//Плагинация следующий вопрос
+function next() {
+    check(current)
+    if (current < requestJSON.length - 1){
+        current++;
+        render(requestJSON[current]);
+    }
+    if (current == requestJSON.length - 1) {
+        document.getElementById("next").className = "next disabled" 
+    }
+    if (current > 0){
+        document.getElementById("previous").className = "previous" 
+    }
+    document.getElementById("page"+ current).className = "active" 
+    document.getElementById("page"+ (current-1)).className = "" 
+    //render(requestJSON[current])
+    if (checboxvar[current]){
+        checboxv(current);
+    }
+    return current;
+}
+
+//Плагинация вернутся на один вопрос назад
+function previous() {
+    check(current)
+    if (current != 0 ){
+        current--;
+        render(requestJSON[current]);
+    }
+    if (current == 0) {
+        document.getElementById("previous").className = "previous disabled" 
+    }
+    if (current < requestJSON.length){
+        document.getElementById("next").className = "next" 
+    }
+    document.getElementById("page"+ current).className = "active" 
+    document.getElementById("page"+ (current+1)).className = "" 
+    //render(requestJSON[current])
+    if (checboxvar[current]){
+        checboxv(current);
+    }
+    return current;
+}
