@@ -7,8 +7,8 @@ var checboxvar = [];
 var request;
 var requestJSON;
 
-function main (){
-    
+function main (content){
+    alert(content); 
 }
 
 if (window.XMLHttpRequest) {
@@ -21,6 +21,7 @@ request.onreadystatechange = function(){
     if((request.readyState===4) && (request.status===200)){
         requestJSON = JSON.parse(request.responseText);
         alert(requestJSON);
+        main(requestJSON[current]);
         
     }
 }
