@@ -7,7 +7,6 @@ if (window.XMLHttpRequest) {
     request = new ActiveXObject("Microsoft.XMLHTTP");
 }
 request.open('GET', '/quzi/testJS/' + most_recent.attr('id') + '/', false);
-request.send();
 if(request.status===200){
     var modify = document.getElementById('question');
     modify.innerHTML = request.responseText;
