@@ -18,8 +18,8 @@ function onAjaxSuccess(data){
 function answer(content){
 // функция отрисовки страницы 
     if (content){
-        document.getElementById("question").innerHTML = content.question_content
-        document.getElementById("answer").innerHTML = ""
+        $("#question").html(content.question_content);
+        $("#answer").empty();
         for (fields of content.answer){ 
             var answer = '<tr>'
                 + '<td style="width: 30px;" ><label>'
@@ -27,7 +27,7 @@ function answer(content){
                 + '</label></td>'
                 + '<td>' + fields.ansver_content + '</td>'
                 + '</tr>';
-            document.getElementById("answer").innerHTML += answer      
+            $("#answer").append(answer);
         }
     }
     else{
