@@ -1,9 +1,15 @@
 most_recent = $(".answer_id")
 
-var request = new XMLHttpRequest();
+var request;
+if (window.XMLHttpRequest) {
+    request = new XMLHttpRequest();
+} else {
+    request = new ActiveXObject("Microsoft.XMLHTTP");
+}
 request.open('GET', '/quzi/testJS/' + most_recent.attr('id') + '/', false);
 request.send();
 if(request.status===200){
-    console.log(request);
-    document.writeln(request.responseText);
+    var modify = document.getElementById('question');
+    modify.innerHTML = request.responseText;
 }
+request.send();
