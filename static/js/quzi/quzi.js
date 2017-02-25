@@ -10,6 +10,8 @@ var requestJSON;
 function main (content){
     if (content){
         alert(content); 
+        var question =  document.getElementById("question");
+        question.innerHTML = content.question_content;
     }
 }
 
