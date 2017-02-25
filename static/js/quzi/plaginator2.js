@@ -4,9 +4,10 @@ most_recent = $(".answer_id")
 var content1 = $.ajax({
     type: "GET",
     url: "/quzi/testJS/" + most_recent.attr('id') + "/",
-    dataType: "jsonp",
+    dataType: "json",
     success: function (data){data;},
-    async: false
+    async: false,
+    cache: false
 }).responseText;
 
 //выводим ответ в консоль
@@ -141,12 +142,9 @@ function check(number){
     checboxvar[number] = [];
     var i = 0;
     if (element.length) {
-        //for (xer of element){
-        //    checboxvar[number][i++] = xer.checked;
-        //}
-        element.forEach(function(element, index, array){
-            checboxvar[number][index] = element.checked;
-        })
+        for (xer of element){
+            checboxvar[number][i++] = xer.checked;
+        }
     }
 }
 

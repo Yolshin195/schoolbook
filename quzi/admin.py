@@ -11,7 +11,12 @@ class AnswerInlone(admin.StackedInline):
     extra = 4
 
 class QuestionAdmin(admin.ModelAdmin):
+    list_display = [
+        'question_question_list',
+        'question_content',
+    ]
     foelss = ['question_content']
+    list_filter = ['question_question_list']
     inlines = [AnswerInlone]
 
     class Media:
@@ -27,6 +32,16 @@ class QuestionListAdmin(admin.ModelAdmin):
     # list_filter = ['article_date']
 
 class AnswerCSS(admin.ModelAdmin):
+    list_display = [
+        'ansver_boolean',
+        'ansver_content',
+        'answer_question',
+    ]
+    foelss = [
+        'ansver_content',
+        'ansver_boolean',
+    ]
+    list_filter = ['answer_question']
     class Media:
         js = (
             '/static/js/tinymce/tinymce.min.js',

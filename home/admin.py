@@ -8,8 +8,23 @@ class NewsAdmin(admin.ModelAdmin):
     fields = ['news_title', 'news_content', 'news_image', 'image_img']
 
 class MetadataAdmin(admin.ModelAdmin):
-    list_display = ['metadata_name', 'metadata_title', 'metadata_content']
-    fields = ['metadata_name', 'metadata_title', 'metadata_content']
+    list_display = [
+        'metadata_url',
+        'metadata_name',
+        'metadata_title',
+        'metadata_content',
+        'metadata_date',
+        'metadata_boolean',
+        'image_img',
+    ]
+    fields = [
+        'metadata_url',
+        'metadata_name',
+        'metadata_title',
+        'metadata_content',
+        'metadata_boolean',
+        'metadata_image',
+    ]
 
     class Media:
         js = (
