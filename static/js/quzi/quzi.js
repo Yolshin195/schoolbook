@@ -52,8 +52,8 @@ request.onreadystatechange = function(){
         requestJSON = JSON.parse(request.responseText);
         render(requestJSON[current]);
         plaginator(requestJSON.length);
-        var page = document.getElementById("page"+ current);
-        page.classList = "active";
+        var pagenumber = document.getElementById("page"+ current);
+        pagenumber.className = "active";
         for (var i = 0; i < requestJSON.length; i++){
             answerarray[i] = false;
         }
