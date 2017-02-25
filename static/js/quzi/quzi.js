@@ -51,8 +51,9 @@ request.onreadystatechange = function(){
     if((request.readyState===4) && (request.status===200)){
         requestJSON = JSON.parse(request.responseText);
         render(requestJSON[current]);
-        plaginator(requestJSON.length)
-        document.getElementById("page"+ current).classList = "active";
+        plaginator(requestJSON.length);
+        var page = document.getElementById("page"+ current);
+        page.classList = "active";
         for (var i = 0; i < requestJSON.length; i++){
             answerarray[i] = false;
         }
