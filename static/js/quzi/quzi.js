@@ -12,6 +12,8 @@ function main (content){
         alert(content); 
         var question =  document.getElementById("question");
         question.innerHTML = content.question_content;
+        var answers = document.getElementById("answer");
+        answers.innerHTML = "";
     }
 }
 
