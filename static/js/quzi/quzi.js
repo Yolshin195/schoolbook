@@ -74,6 +74,14 @@ function check(number){
     }
 }
 
+//Воспроизводит положение checkBOX
+function checboxv(number){
+    var checkbox = document.getElementsByName("checkbox");
+    for (var i = 0; i < checboxvar[number].length; i++){
+        checkbox[i].checked = checboxvar[number][i];
+    } 
+}
+
 //Плагинация следующий вопрос
 function next() {
     check(current)
